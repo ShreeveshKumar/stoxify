@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stoxify - Your guide to swing trading in equities and stocks."
+    />
+
+    <title>Stoxify - Swing Trading Guide</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" type="image/x-icon" href="./user.ico" class="rounded-full">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    
+    </script>
+    <style>
+      .footer {
+        background-color: #00011d;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        50% {
+          transform: translateX(5px);
+        }
+        75% {
+          transform: translateX(-5px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .shake {
+        animation: shake 0.5s infinite;
+      }
+      .ui-accordion {
+        width: 30rem;
+        max-width: 100%;
+        font-size: var(--text-sm);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .faq-container {
+        width: 60%;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+      }
+
+      .faq {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+
+      .question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        cursor: pointer;
+      }
+
+      .answer {
+        display: none;
+        padding: 10px 0;
+        transition: max-height 0.2s ease-out;
+      }
+
+      .arrow {
+        font-size: 18px;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .fixed-icon {
+        position: fixed;
+        right: 0;
+        bottom: 60px;
+        z-index: 30;
+        color: black;
+        width: 55px;
+      }
+
+      @media screen and (width<768px) {
+        .fixed-icon {
+          width: 35px;
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #007bff;
+        border-radius: 6px;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .dropbtn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .plus {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-20%);
+        transition: transform 0.3s ease;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .plus::before {
+        content: "+";
+      }
+
+      .plus.opened::before {
+        content: "-";
+      }
+
+      .faq-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+      }
+
+      .faq-column {
+        flex: 1 1 calc(50% - 10px);
+        margin: 10px;
+      }
+
+      .faq-item {
+        position: relative;
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 15px 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background-color: #e2e2e2;
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        transition: max-height 0.5s ease, padding 0.5s ease;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-top: -1px;
+      }
+
+      .faq-answer.open {
+        max-height: 200px;
+        padding: 15px 20px;
+      }
+
+      @media (max-width: 768px) {
+        .faq-column {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="fixed-icon animate-bounce" ;>
+      <a href="https://t.me/stoxify" target="_blank">
+        <img src="./telegram.png" alt="Telegram Icon" />
+      </a>
+    </div>
+    <nav class="bg-white p-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img
+          src="./images.png"
+          alt="Stoxify Logo"
+          class="h-8 w-8 rounded-full"
+        />
+        <span class="ml-2 text-xl font-bold text-black">Stoxify</span>
+      </div>
+      <div
+        class="hidden lg:flex space-x-6 place-content-center align-middle justify-center"
+      >
+        <a href="#" class="text-black hover:text-gray-700">Home</a>
+        <a href="#aboutsection" class="text-black hover:text-gray-700">About</a>
+        <a href="#faqsection" class="text-black hover:text-gray-700">FAQs</a>
+        <a
+          href="https://www.stoxify.net/p/privacy-policy.html"
+          target="_blank"
+          class="text-black hover:text-gray-700"
+          >Privacy</a
+        >
+        <a href="#contactsection" class="text-black hover:text-gray-700"
+          >Contact</a
+        >
+      </div>
+      <div class="hidden lg:block">
+        <a
+          href="https://t.me/stoxify"
+          class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 flex align-middle"
+          ><img
+            width="28"
+            height="28"
+            src="https://img.icons8.com/fluency/48/telegram-app.png"
+            alt="telegram-app"
+          />Join Telegram Now</a
+        >
+      </div>
+      <div class="lg:hidden">
+        <button id="hamburger" class="text-black focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="hidden lg:hidden flex flex-col space-y-2 p-4">
+      <a
+        href="#"
+        class="text-black hover:text-blue-700 hover:bg-blue-500 rounded-md text-center"
+        >Home</a
+      >
+      <a
+        href="#aboutsection"
+        class="text-black hover:text-blue-700 hover:bg-blue-500 rounded-md text-center"
+        >About</a
+      >
+      <a
+        href="#faqsection"
+        class="text-black hover:text-blue-700 hover:bg-blue-500 rounded-md text-center"
+        >FAQs</a
+      >
+      <a
+        href="https://www.stoxify.net/p/privacy-policy.html"
+        target="_blank"
+        class="text-black hover:text-blue-700 hover:bg-blue-500 rounded-md text-center"
+        >Privacy</a
+      >
+      <a
+        href="#contactsection"
+        class="text-black hover:text-blue-700 hover:bg-blue-500 rounded-md text-center"
+        >Contact</a
+      >
+      <a
+        href="https://t.me/stoxify"
+        class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-center flex align-middle place-content-center justify-center"
+      >
+        <img
+          width="28"
+          height="28"
+          src="https://img.icons8.com/fluency/48/telegram-app.png"
+          alt="telegram-app"
+        />Join Telegram Now</a
+      >
+    </div>
+
+    <!-- header and main section  -->
+
+    <div
+      class="flex justify-center place-content-center items-center align-middle my-5"
+    >
+      <div class="flex flex-col items-center p-0 lg:p-4 bg-white">
+        <h2 class="text-lg font-bold text-black mb-4">We Tell You</h2>
+        <div class="text-5xl lg:text-8xl font-bold">
+          <p class="my-5">
+            When To <span class="text-blue-600 my-4">Buy</span>
+          </p>
+          <p class="my-3">
+            When To <span class="text-blue-600 my-4">Exit</span>
+          </p>
+        </div>
+        <div class="my-5 p-4">
+          <a
+            my-4
+            href="https://t.me/stoxify"
+            class="flex mt-6 bg-blue-600 text-white py-3 px-4 lg:px-8 rounded-lg flex items-center space-x-2 hover:bg-blue-700 align-middle justify-center place-content-center items-center"
+          >
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/fluency/48/telegram-app.png"
+              alt="telegram-app"
+            />
+            <div class="flex">Join Our Telegram Community Now</div>
+          </a>
+          <p
+            class="mt-4 text-red-600 font-bold text-lg animation-bounce shake text-center"
+          >
+            HURRY UP ONLY 50 SEAT LEFT!!!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center p-6 bg-white">
+      <div
+        class="text-4xl lg:text-6xl my-10 font-bold text-black mb-6"
+        id="aboutsection"
+      >
+        About Us
+      </div>
+      <div class="max-w-4xl text-semibold space-y-6 my-10">
+        <p class="text-lg text-wrap text-gray-700 align-left">
+          STOXIFY is a vibrant community and platform dedicated to offering
+          educational content focused on swing trading in equities and stocks.
+          Our mission is to equip individuals with valuable insights and
+          knowledge to enhance their understanding of the stock market.
+        </p>
+        <p class="text-lg text-gray-700">
+          It’s important to note that STOXIFY is not registered with the
+          Securities and Exchange Board of India (SEBI). Therefore, we do not
+          provide any buy or sell calls or recommendations. Our content is
+          purely educational and aims to empower users with the skills needed to
+          make informed trading decisions.
+        </p>
+        <p class="text-lg text-gray-700">
+          All the information and analysis shared on STOXIFY is intended for
+          educational purposes only. We emphasize that we do not take
+          responsibility for any financial gains or losses resulting from
+          actions taken based on our content. We strongly advise consulting with
+          a qualified financial advisor before making any investment decisions.
+        </p>
+        <p class="text-lg text-gray-700">
+          Join STOXIFY to delve deeper into the world of swing trading, expand
+          your knowledge base, and connect with a community passionate about
+          learning and trading in the stock market.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-4xl lg:text-6xl text-center" id="faqsection">FAQ's</div>
+      <div class="faq-container">
+        <div class="faq-column">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What kind of content does STOXIFY provide?</span>
+              <span class="plus closed"></span>
+            </div>
+            <div class="faq-answer">
+              STOXIFY offers a variety of educational content including
+              articles, videos, webinars, and community discussions focused on
+              swing trading strategies, market analysis, and trading psychology.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How can I start trading on STOXIFY?</span>
+              <span class="plus closed"></span>
+            </div>
+            <div class="faq-answer">
+              You can start trading on STOXIFY by creating an account,
+              completing the verification process, and funding your account.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What are the benefits of using STOXIFY?</span>
+              <span class="plus closed"></span>
+            </div>
+            <div class="faq-answer">
+              Benefits of using STOXIFY include access to a variety of trading
+              tools, educational resources, and a supportive trading community.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Does STOXIFY offer customer support?</span>
+              <span class="plus closed"></span>
+            </div>
+            <div class="faq-answer">
+              Yes, STOXIFY offers customer support via email, phone, and live
+              chat to assist with any issues or questions.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Is STOXIFY suitable for beginners?</span>
+              <span class="plus closed"></span>
+            </div>
+            <div class="faq-answer">
+              Yes, STOXIFY provides educational resources and beginner-friendly
+              tools to help new traders get started.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center p-6">
+      <h1 class="text-4xl lg:text-6xl font-bold mb-6" id="contactsection">
+        Contact Us
+      </h1>
+      <form
+        class="w-full max-w-lg space-y-4"
+        id="contact-form" action="javascript:void(0);"
+      >
+        <div>
+          <label for="name" class="block text-lg font-medium text-gray-700"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="getname"
+            class="mt-1 p-2 w-full border rounded-md border-2 border-blue-700"
+            placeholder="Your Name"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-lg font-medium text-gray-700"
+            >Phone number</label
+          >
+          <input
+            type="string"
+            id="getphone"
+            class="mt-1 p-2 w-full border-2 border-blue-700 rounded-md"
+            placeholder="Your phone number"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-lg font-medium text-gray-700"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="getemail"
+            class="mt-1 p-2 w-full border-2 border-blue-700 rounded-md"
+            placeholder="Your Email"
+            required
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-lg font-md text-gray-700"
+            >Message</label
+          >
+          <textarea
+            id="getmessage"
+            rows="4"
+            class="mt-1 p-2 w-full border-2 border-blue-700 rounded-md"
+            placeholder="Your Message"
+            required
+          ></textarea>
+        </div>
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            class="flex gap-5 bg-blue-600 font-bold text-white text-center items-center justify-content-center place-content-center px-4 rounded-md hover:bg-blue-700 w-96 py-5 transform-x -skew-x-3"
+          >
+            Send Message
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <footer
+      class="p-10 text-center text-white text-md"
+      id="footer"
+      style="background-color: #00011d"
+    >
+      <div class="flex place-content-center justify-center align-middle">
+        <a
+          my-4
+          href="https://t.me/stoxify"
+          target="_blank"
+          class="flex mt-6 bg-blue-600 text-white py-3 flex items-center space-x-2 hover:bg-blue-700 align-middle justify-center place-content-center items-center w-96 rounded-full"
+        >
+          <img
+            width="48"
+            height="48"
+            src="https://img.icons8.com/fluency/48/telegram-app.png"
+            alt="telegram-app"
+          />
+          <div class="flex">Join Our Telegram Community Now</div>
+        </a>
+      </div>
+      <div class="flex justify-center gap-10 my-5">
+        <a href="#" target="_blank" class="p-1 bg-blue-500 rounded-full"
+          ><img
+            width="28"
+            height="28"
+            src="https://img.icons8.com/ios-filled/50/FFFFFF/facebook-new.png"
+            alt="facebook-new"
+        /></a>
+        <a href="#" target="_blank" class="p-1 bg-blue-500 rounded-full"
+          ><img
+            width="28"
+            height="28"
+            src="https://img.icons8.com/ios-filled/50/FFFFFF/twitter.png"
+            alt="twitter--v1"
+        /></a>
+        <a href="#" target="_blank" class="p-1 bg-blue-500 rounded-full"
+          ><img
+            width="28"
+            height="28"
+            src="https://img.icons8.com/ios-filled/50/FFFFFF/instagram-new--v1.png"
+            alt="instagram-new--v1"
+        /></a>
+      </div>
+      <div class="m-5 text-sm">
+        Investment in Securities Market are subject to market risks. Read all
+        the related documents carefully before investing.
+      </div>
+      <div class="mt-5 text-sm">@2024 - All Rights Reserved</div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      emailjs.init("Vr3nxYpqSNHEWgV5T");
+    
+      function validateForm() {
+        const email = document.getElementById("getemail").value;
+        const phone = document.getElementById("getphone").value;
+        const name = document.getElementById("getname").value;
+        const message = document.getElementById("getmessage").value;
+    
+        const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const validateNumber = (phone) => /^\d+$/.test(phone);
+        const isNotEmpty = (field) => field.trim().length > 0;
+    
+        if (!validateEmail(email)) {
+          alert("Invalid email");
+          return false;
+        }
+        if (!validateNumber(phone)) {
+          alert("Invalid number");
+          return false;
+        }
+        if (!isNotEmpty(name)) {
+          alert("Name is required");
+          return false;
+        }
+        if (!isNotEmpty(message)) {
+          alert("Message is required");
+          return false;
+        }
+        return true;
+      }
+
+      function sendForm(event) {
+        event.preventDefault();
+    
+        if (validateForm()) {
+          const templateParams = {
+            user_name: document.getElementById('getname').value,
+            user_email: document.getElementById('getemail').value,
+            user_phone: document.getElementById('getphone').value,
+            message: document.getElementById('getmessage').value,
+          };
+
+          console.log(templateParams);
+    
+          emailjs.send('service_9aeap2h', 'template_xp01t45', templateParams)
+            .then((response) => {
+              alert('Message sent successfully!');
+            }, (error) => {
+              alert('Failed to send message. Please try again.');
+            });
+        }
+      }
+    
+      document.getElementById('contact-form').addEventListener('submit', sendForm);
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+          const plus = item.querySelector(".plus");
+          question.addEventListener("click", () => {
+            const isOpened = answer.classList.contains("open");
+            answer.classList.toggle("open", !isOpened);
+            plus.classList.toggle("opened", !isOpened);
+            plus.classList.toggle("closed", isOpened);
+          });
+        });
+      });
+    </script>
+    
+  </body>
+</html>
